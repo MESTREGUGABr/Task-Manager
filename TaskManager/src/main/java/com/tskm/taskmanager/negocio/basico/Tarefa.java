@@ -1,5 +1,6 @@
 package com.tskm.taskmanager.negocio.basico;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import com.tskm.taskmanager.negocio.basico.Enum.EstadoAtual;
@@ -16,7 +17,8 @@ public class Tarefa {
     private Date validade;
     private EstadoAtual estado;
 
-    @ManyToOne // Relação ManyToOne com Funcionario
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "funcionario_id")
     private Funcionario funcionario;
 
     public Tarefa(){

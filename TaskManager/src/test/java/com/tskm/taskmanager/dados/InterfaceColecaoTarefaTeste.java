@@ -7,15 +7,17 @@ import com.tskm.taskmanager.negocio.basico.Tarefa;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.time.LocalDate;
 import java.util.Date;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 public class InterfaceColecaoTarefaTeste {
 
+    EstadoAtual estd = EstadoAtual.EXECUTANDO;
     Cargo carg = Cargo.FUNCIONARIO;
-    EstadoAtual estd = EstadoAtual.NAOINICIADA;
-    private Date datateste;
+    Date dataTeste = new Date();
     @Autowired
     private InterfaceColecaoTarefa colecaoTarefa;
     @Autowired
@@ -23,11 +25,12 @@ public class InterfaceColecaoTarefaTeste {
 
 
 
+    @Test
     void cadastroTarefa(){
 
         long qtdTarefa = colecaoTarefa.count();
-
-        Tarefa taf = new Tarefa("Titulo","descricao",datateste,estd,);
+        Funcionario func = new Funcionario(carg,"teste@gmail.com","123456","Nome Fake");
+        Tarefa taf = new Tarefa("Alteração no banco","alt",dataTeste,estd,func);
         colecaoTarefa.save(taf);
         long qtdTarefa1 = colecaoTarefa.count();
 
